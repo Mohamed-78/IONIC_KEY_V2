@@ -1,0 +1,18 @@
+SIGNATURE APK IONIC
+
+1-Création d'un fichier build.json à la racine du projet
+{
+    "android": {
+        "debug": {
+            "packageType": "apk"
+        },
+        "release": {
+            "packageType": "apk"
+        }
+    }
+}
+
+2: ionic cordova build android --prod --release
+3: keytool -genkey -v -keystore <myappname.keystore> -alias <myappname> -keyalg RSA -keysize 2048 -validity 10000
+4: jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore mobristore.keystore platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk mobristore
+5:zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk app.apk
